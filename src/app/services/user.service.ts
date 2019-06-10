@@ -22,4 +22,7 @@ export class UserService {
     }
     )
   }
+  viewProfessors(){
+    return this.httpclient.get('http://localhost:3000/professors');
+  }
 }
