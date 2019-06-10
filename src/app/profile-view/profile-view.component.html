@@ -1,0 +1,27 @@
+<ngb-tabset justify="justified">
+  <ngb-tab title="Profile">
+    <ng-template ngbTabContent  *ngIf="user | async; let user; else loading">
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-md-6 offset-md-3">
+              <h3>{{user.first_name}} {{user.last_name}}</h3>
+              <p><b>Email : </b>{{user.email}}</p>
+              <p><b>UID : </b>{{user.uid}}</p>
+              <p><b>Contact : </b>{{user.contact}}</p>
+              <p><b>Department : </b>{{user.dept}}</p>
+              <p *ngIf="user.role==0"><b>Role : </b> Student</p>
+              <p *ngIf="user.role==1"><b>Role : </b> TPO</p>
+              <p *ngIf="user.role==2"><b>Role : </b> HOD</p>
+              <p *ngIf="user.role==3"><b>Role : </b> Teacher</p>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #loading>
+      <h1>Loading</h1>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Edit">
+
+  </ngb-tab>
+</ngb-tabset>

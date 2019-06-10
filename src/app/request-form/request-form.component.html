@@ -1,0 +1,51 @@
+<div class="jumbotron ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h3>Initiate Request</h3>
+        <form [formGroup]="request_form" (ngSubmit)="onSubmit()">
+
+          <div class="form-row">
+            <div class="col form-group">
+              <label for="yearofgrad">Year of Graduation</label>
+              <select id="yearofgrad" class="form-control" formControlName="yearOfGrad">
+                <option value="{{y}}" *ngFor="let y of years">{{y}}</option>
+              </select>
+            </div>
+            <div class="col form-group">
+              <label for="category">category</label>
+              <select id="category" class="form-control" formControlName="category">
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+            </div>
+            <div class="col form-group">
+              <label for="company">Company( if placed )</label>
+              <input type="text" class="form-control" formControlName="company">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pubdetails">Publication Details</label>
+            <textarea class="form-control" formControlName="pubDetails"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="prof">Professor</label>
+              <input type="text" class="form-control" formControlName="prof">
+            </div>
+            <div class="form-group col">
+              <label for="branch">Branch</label>
+              <select class="form-control" formControlName="branch">
+                <option value="COMPS">Computer Science</option>
+                <option value="IT">Information Technology</option>
+                <option value="EXTC">Electronics and Telecommunication</option>
+                <option value="ETRX">Electronics</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary"[disabled]="!request_form.valid">Submit Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

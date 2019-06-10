@@ -1,0 +1,30 @@
+
+<div class="jumbotron h-100">
+  <div class="container">
+    <div class="row">
+      <header class="col-md-6 m-5" style="text-align:center">
+        <h1>LOR System</h1>
+      </header>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h3>Login</h3>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="username">User Name</label>
+            <input type="text" class="form-control" id="username" placeholder="ExampleUserName" formControlName="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+          </div>
+          <div class="w-100" style="text-align: center">
+              <button type="submit" class="btn btn-primary float-left ml-5" [disabled]="loginForm.status!='VALID'">Login</button>
+              OR
+              <button class="btn btn-success float-right mr-5" (click)="router.navigate(['/register'])">Register</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

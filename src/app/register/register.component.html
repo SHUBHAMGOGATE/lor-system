@@ -1,0 +1,144 @@
+
+<div class="jumbotron h-100">
+    <div class="container">
+      <div class="row">
+        <header class="col-md-6 m-5" style="text-align:center">
+          <h1>LOR System</h1>
+        </header>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h3>Register</h3>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="first_name">First Name</label>
+                  <input type="text" class="form-control" id="first_name" placeholder="First Name" formControlName="first_name">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="first_name">Last Name</label>
+                  <input type="text" class="form-control" id="last_name" placeholder="Last Name" formControlName="last_name">
+                </div>
+              </div>
+
+            </div>
+            <div class="form-row">
+            <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)" class="alert alert-danger col">
+                <div *ngIf="first_name.errors.required">
+                  First Name is required.
+                </div>
+            </div>
+            <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="alert alert-danger col">
+                <div *ngIf="last_name.errors.required">
+                  Last Name is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="uid">UID</label>
+              <input type="number" class="form-control" id="uid" placeholder="UID" formControlName="uid">
+              <div *ngIf="uid.invalid && (uid.dirty || uid.touched)" class="alert alert-danger col">
+                  <div *ngIf="uid.errors.required">
+                    UID is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="first_name" placeholder="a@b.com" formControlName="email">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="contact">Contact</label>
+                  <input type="number" class="form-control" id="contact" placeholder="XXXXXXXXXX" formControlName="contact">
+                </div>
+              </div>
+
+            </div>
+            <div class="form-row">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger col">
+                <div *ngIf="email.errors.required">
+                  Email is required.
+                </div>
+            </div>
+            <div *ngIf="contact.invalid && (contact.dirty || contact.touched)" class="alert alert-danger col">
+                <div *ngIf="contact.errors.required">
+                  Contact is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="retype_password">Retype Password</label>
+                  <input type="password" class="form-control" id="retype_password" placeholder="Retype Password" formControlName="retype_password">
+                </div>
+              </div>
+            </div>
+            <div *ngIf="password.valid && retype_password.valid && password.value!=retype_password.value;else elseblock" class="alert alert-danger">
+                Password and Retyped password must be same
+            </div>
+            <ng-template #elseblock>
+                <div class="form-row">
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger col">
+                        <div *ngIf="password.errors.required">
+                          Password is required.
+                        </div>
+                    </div>
+                    <div *ngIf="retype_password.invalid && (retype_password.dirty || retype_password.touched)" class="alert alert-danger col">
+                        <div *ngIf="retype_password.errors.required">
+                          You Must Retype the password.
+                        </div>
+                      </div>
+                    </div>
+            </ng-template>
+            <div class="form-group">
+              <label for="role">Select Your Role</label>
+              <select id="role" class="form-control" formControlName="role">
+                <option value="0" selected>Student</option>
+                <option value="3">Teacher</option>
+                <option value="1">TPO</option>
+                <option value="2">HOD</option>
+              </select>
+              <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger col">
+                  <div *ngIf="role.errors.required">
+                    Role is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group" >
+              <label for="dept">Department</label>
+              <select id="dept" class="form-control" formControlName="dept">
+                <option value="COMPS" selected>Computer Science</option>
+                <option value="IT">Information Technology</option>
+                <option value="EXTC">Electronics and Telecomunication</option>
+                <option value="ETRX">Electronics</option>
+              </select>
+              <div *ngIf="dept.invalid && (dept.dirty || dept.touched)" class="alert alert-danger col">
+                  <div *ngIf="dept.errors.required">
+                    Department is required.
+                  </div>
+              </div>
+            </div>
+            <div class="w-100" style="text-align: center">
+            <button type="submit" class="btn btn-primary float-left ml-5" [disabled]="registerForm.status!='VALID'">Submit</button>
+            OR
+            <button class="btn btn-success float-right mr-5" (click)="router.navigate(['/login'])">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
