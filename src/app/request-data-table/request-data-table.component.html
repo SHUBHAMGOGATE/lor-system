@@ -6,19 +6,19 @@
 <table class="table">
     <thead>
         <tr>
-          <th scope="col">UID</th>
+          <!-- <th scope="col">UID</th>
           <th scope="col">Name</th>
           <th scope="col">Year of Passing</th>
           <th scope="col">Company</th>
-          <th scope="col">Inspect|Accept|Reject</th>
+          <th scope="col">Inspect|Accept|Reject</th> -->
+          <th scope="col" *ngFor="let th of visibleFields[data$].th">{{th}}</th>
         </tr>
       </thead>
     <tbody>
-      <tr *ngFor="let req of pendingReqList$;index as i">
+      <tr *ngFor="let req of complReqList$;index as i">
         <th scope="row">{{req.uid}}</th>
         <td>{{req.first_name}} {{req.last_name}}</td>
-        <td>{{req.yearofgrad}} </td>
-        <td>{{req?.company}} </td>
+        <td *ngFor="let td of visibleFields[data$].td">{{req[td]}}</td>
         <td><button class="btn btn-secondary mr-3" (click)="open(req,i)"><i class="fas fa-external-link-alt"></i></button><button class="btn btn-success mr-3" (click)="accept(req,i)"><i class="fas fa-user-check"></i></button><button class="btn btn-danger mr-3" (click)="reject(req)"><i class="fas fa-ban"></i></button></td>
 
       </tr>
@@ -41,7 +41,7 @@
       <tr *ngFor="let req of complReqList$;index as i">
         <th scope="row">{{req.uid}}</th>
         <td>{{req.first_name}} {{req.last_name}}</td>
-        <td>{{req.yearofgrad}} </td>
+        <td>{{req.yearOfGrad}} </td>
         <td>{{req?.company}} </td>
         <td><button class="btn btn-secondary mr-3" (click)="open(req)"><i class="fas fa-external-link-alt"></i></button></td>
       </tr>

@@ -6,6 +6,7 @@ import { RequestModalComponent } from '../request-modal/request-modal.component'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RequestService } from '../services/request.service';
 import { RejectModalComponent } from '../reject-modal/reject-modal.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-request-data-table',
@@ -13,8 +14,16 @@ import { RejectModalComponent } from '../reject-modal/reject-modal.component';
   styleUrls: ['./request-data-table.component.css']
 })
 export class RequestDataTableComponent implements OnInit {
-  data$: Observable<object>;
-  constructor(public activatedRoute: ActivatedRoute,private modalService: NgbModal ,private requestService:RequestService ) {}
+  public data$;
+
+  constructor(public activatedRoute: ActivatedRoute,private modalService: NgbModal ,private requestService:RequestService ,private authService:AuthService) {}
+  public visibleFields={
+    tpo:{
+      th:["UID","NAME","YEAR of Passing","Company","Inspect|Accept|Reject"],
+      td:["yearOfGrad","company"]
+    }
+  }
+
   // public reqList$ = [
   //   {
   //     uid: '2017140015',
@@ -48,7 +57,7 @@ export class RequestDataTableComponent implements OnInit {
   public pendingReqList$;
   public complReqList$;
   ngOnInit() {
-    this.data$ = this.activatedRoute.paramMap.pipe(map(() => window.history.state));
+    this.authService.currentUser.subscribe(x=>{this.data$=x.role})
     this.requestService.getPendingRequests().subscribe(x=>{
       this.pendingReqList$=x;
     });

@@ -33,6 +33,13 @@ export class HomeComponent implements OnInit {
         {tag: 'Lor requests', link: './request'},
         {tag: 'View Profile', link: './profile'}
       ]
+    },
+    {
+      role: 'teacher',
+      links: [
+        {tag: 'Lor requests', link: './request'},
+        {tag: 'View Profile', link: './profile'}
+      ]
     }
   ];
   public navLinks: any;

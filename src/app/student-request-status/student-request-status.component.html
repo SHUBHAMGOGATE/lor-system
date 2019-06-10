@@ -1,4 +1,4 @@
-<div class="card mb-2"  *ngFor="let req of status|async;index as i">
+<!-- <div class="card mb-2"  *ngFor="let req of status|async;index as i">
   <div class="card-header">{{req.status}}</div>
   <div class="card-body" (dblclick)="open(req)">
     {{req|json}}
@@ -15,15 +15,15 @@
         <p>{{req.rejectedBy}}</p>
       </div>
   </div>
-</div>
+</div> -->
 
 <div class="card mb-2"  *ngFor="let req of pendingReq|async;index as i">
-    <div class="card-header">{{req.status}}</div>
+    <div class="card-header text-white bg-primary">{{req.status}}</div>
     <div class="card-body" (dblclick)="open(req)">
-      {{req|json}}
-      <p><span>Category :{{req.category}} </span> <span *ngIf="req.company" class="float-right">Company :{{req.company}}</span> </p>
-      <p>{{req.pubDetails}}</p>
-      <p>{{req.pfirst_name}} {{req.plast_name}}</p>
+      <!-- {{req|json}} -->
+      <p><span><b>Category :</b> {{req.category}} </span> <span *ngIf="req.company" class="float-right">Company :{{req.company}}</span> </p>
+      <p><b>Publcation Details :</b>{{req.pubDetails}}</p>
+      <p><b>Name of Professor :</b>  {{req.pfirst_name}} {{req.plast_name}}</p>
     </div>
     <div class="card-footer">
         <div class="progress" >
