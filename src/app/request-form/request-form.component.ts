@@ -12,7 +12,8 @@ import { map } from 'rxjs/operators';
 })
 export class RequestFormComponent implements OnInit {
   public years:number[];
-  public professors:any;
+  public all_professors:any;
+  public filter_professors:any;
   request_form:FormGroup;
   constructor(private fb:FormBuilder,private requestService:RequestService,private router:Router,private route:ActivatedRoute,private userService:UserService) {
     this.years=Array.from(new Array(5), (x,i) => i+2019);
@@ -30,9 +31,9 @@ export class RequestFormComponent implements OnInit {
     });
     this.userService.viewProfessors().subscribe(
       x=>{
-        this.professors=x;
-        this.professors=this.professors.map(a=>a.first_name+" "+a.last_name)
-        console.log(this.professors)
+        this.filter_professors=x;
+        this.all_professors=x;
+        console.log(this.all_professors)
       }
     )
 
@@ -42,5 +43,10 @@ export class RequestFormComponent implements OnInit {
     this.requestService.makeRequest(this.request_form.value).subscribe(
       x=>this.router.navigate(['../status'],{relativeTo:this.route})
     );
+  }
+  filterProf(event){
+    console.log(event.target.value=='IT');
+    this.filter_professors=this.all_professors.filter(element=>element.dept===event.target.value);
+    console.log(this.filter_professors)
   }
 }

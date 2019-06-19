@@ -1,17 +1,17 @@
 <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
+    <h4 class="modal-title">Request {{data.status}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <p><b>{{data.first_name}} {{data.last_name}}</b></p>
-    <p><b>UID</b> :{{data.uid}}</p>
-    <p><b>email</b> :{{data.email}} <br> <b>contact</b> :{{data.contact}}</p>
-    <p><b>category </b>: {{data.category}} <br>  <b>Year of Grad</b> : {{data.yearofgrad}}  <br>  <b>Company</b> : {{data.company}} </p>
-    <p>{{data.pubdetails}}</p>
-    <p><b>Professor</b> {{data.prof}} <br> <b>Branch</b> {{data.branch}} </p>
-    <p> <b>Status</b> {{data.status}} <span *ngIf="data.reasonofrejection"><br><b>Reaseon of Rejection</b> {{data.reasonofrejection}}</span> </p>
+    <p><b>UID :</b> {{data.uid}}</p>
+    <p><b>email :</b> {{data.email}} <br> <b>contact</b> :{{data.contact}}</p>
+    <p><b>Category :</b> {{data.category}} <br>  <b>Year of Grad :</b> {{data.yearOfGrad}}  <br>  <b>Company :</b> {{data.company}} </p>
+    <p><b>Publication Details :</b> {{data.pubDetails}}</p>
+    <p><b>Professor :</b> {{data.pfirst_name}} {{data.plast_name}}<br> <b>Branch :</b> {{data.branch}} </p>
+    <p> <b>Status :</b> {{data.status}} <span *ngIf="data.reasonOfRejection"><br><b>Reason of Rejection :</b> {{data.reasonOfRejection}}</span> </p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>

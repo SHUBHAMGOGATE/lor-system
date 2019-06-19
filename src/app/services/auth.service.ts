@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -58,4 +58,40 @@ export class AuthService {
       localStorage.removeItem('currentUser');
       this.currentUserSubject.next(null);
   }
+  updateEmail(email){
+    let currentUser=JSON.parse(localStorage.getItem('currentUser'));
+        currentUser['email']=email;
+        localStorage.setItem('currentUser',JSON.stringify(currentUser))
+        this.currentUserSubject.next(currentUser);
+  }
+  sendEmail(email){
+    return this.http.get('http://localhost:3000/changePassword/sendMail',{
+      params:new HttpParams().set('email',email)
+    });
+  }
+
+
+
+  verifyOtp(email,key){
+    return this.http.post('http://localhost:3000/verifyPasswordOTP',
+    {
+      key
+    },
+    {
+      params:new HttpParams().set('email',email)
+    })
+  }
+
+  changePassword(email,key,password){
+    return this.http.post('http://localhost:3000/changePassword/changePassword',
+    {
+      key,
+      password
+    },
+    {
+      params:new HttpParams().set('email',email?email:this.currentUserValue.email)
+    }
+    );
+  }
+
 }

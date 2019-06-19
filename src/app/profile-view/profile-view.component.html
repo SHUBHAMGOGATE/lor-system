@@ -1,12 +1,13 @@
 <ngb-tabset justify="justified">
   <ngb-tab title="Profile">
     <ng-template ngbTabContent  *ngIf="user | async; let user; else loading">
+      <div class="jumbotron">
       <div class="container">
-        <div class="row mt-5">
+        <div class="row">
           <div class="col-md-6 offset-md-3">
-              <h3>{{user.first_name}} {{user.last_name}}</h3>
+              <h3>{{user.first_name|titlecase}} {{user.last_name|titlecase}}</h3>
               <p><b>Email : </b>{{user.email}}</p>
-              <p><b>UID : </b>{{user.uid}}</p>
+              <p *ngIf="user.uid"><b >UID : </b>{{user.uid}}</p>
               <p><b>Contact : </b>{{user.contact}}</p>
               <p><b>Department : </b>{{user.dept}}</p>
               <p *ngIf="user.role==0"><b>Role : </b> Student</p>
@@ -16,12 +17,52 @@
           </div>
         </div>
       </div>
+    </div>
     </ng-template>
     <ng-template #loading>
       <h1>Loading</h1>
     </ng-template>
   </ngb-tab>
   <ngb-tab title="Edit">
+      <ng-template ngbTabContent *ngIf="user | async; let user">
+        <div class="jumbotron">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+                <h3>Edit Contact Details</h3>
+                <p class="text-muted">Only Type in the fields that are to be changed</p>
+                  <form [formGroup]="user_form" (ngSubmit)="onSubmit()">
+                      <div class="form-row">
+                        <div class="col form-group">
+                          <label for="first_name">First Name</label>
+                          <input type="text" id="first_name"class="form-control" formControlName="first_name" >
+                        </div>
+                        <div class="col form-group">
+                          <label for="last_name">Last Name</label>
+                          <input type="text" id="last_name" class="form-control" formControlName="last_name" >
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="contact">Contact No</label>
+                        <input type="number"  id="contact" class="form-control" formControlName="contact" >
+                      </div>
+                      <div class="form-group mb-5">
+                          <button type="submit" class="form-control btn btn-primary">CHANGE CONTACTS</button>
 
+                      </div>
+                    </form>
+                    <hr>
+                    <div class="form-group">
+                        <button type="button" class="form-control btn btn-primary" (click)="changeEmail()">CHANGE EMAIL</button>
+
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="form-control btn btn-primary" (click)="changePassword()">CHANGE PASSWORD</button>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </ng-template>
   </ngb-tab>
 </ngb-tabset>

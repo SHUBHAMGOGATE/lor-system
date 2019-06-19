@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
@@ -12,6 +12,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private userService: UserService, public router: Router, ) { }
   public registerForm: FormGroup;
+  public otp:FormControl
+  public step;
   ngOnInit() {
     this.registerForm = this.fb.group({
       first_name: ['', Validators.required],
@@ -24,8 +26,29 @@ export class RegisterComponent implements OnInit {
       role: ['', Validators.required],
       dept: ['', Validators.required]
     });
+    this.otp=new FormControl('',Validators.compose([Validators.minLength(6),Validators.maxLength(6)]))
+    this.step=0;
   }
 
+  sendMail(){
+    this.userService.verifyEmail(this.registerForm.value.email).subscribe(
+      x=>{
+        console.log(x);
+        this.step++;
+      }
+    );
+  }
+  verifyOtp(){
+    this.userService.verifyOtp(this.email.value,this.otp.value).subscribe(
+      x=>{
+        console.log(x);
+        this.step++;
+      }
+    )
+  }
+  back(){
+    this.step--;
+  }
   public get first_name() {
     return this.registerForm.get('first_name');
   }

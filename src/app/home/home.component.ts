@@ -24,21 +24,23 @@ export class HomeComponent implements OnInit {
       role: 'hod',
       links: [
         {tag: 'Lor requests', link: './request'},
-        {tag: 'View Profile', link: './profile'}
+        {tag: 'View Profile', link: './profile'},
+        {tag: 'Upload/Download LOR Format', link:'./documents'}
       ]
     },
     {
       role: 'tpo',
       links: [
         {tag: 'Lor requests', link: './request'},
-        {tag: 'View Profile', link: './profile'}
+        {tag: 'View Profile', link: './profile'},
       ]
     },
     {
       role: 'teacher',
       links: [
         {tag: 'Lor requests', link: './request'},
-        {tag: 'View Profile', link: './profile'}
+        {tag: 'View Profile', link: './profile'},
+        {tag: 'Upload/Download LOR Format', link:'./documents'}
       ]
     }
   ];

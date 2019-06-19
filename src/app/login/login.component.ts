@@ -19,6 +19,10 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+    if(this.authservice.currentUser!=null){
+      const role:string = this.authservice.currentUserValue.role;
+      this.router.navigate(['/' + role]);
+    }
   }
 
   onSubmit() {
@@ -35,6 +39,11 @@ export class LoginComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  onChangePassword(){
+    console.log("Change Password Clicked")
+    this.router.navigate(['/changePassword'])
   }
 
 }

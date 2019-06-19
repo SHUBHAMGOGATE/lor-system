@@ -16,10 +16,9 @@
       </div>
   </div>
 </div> -->
-
 <div class="card mb-2"  *ngFor="let req of pendingReq|async;index as i">
     <div class="card-header text-white bg-primary">{{req.status}}</div>
-    <div class="card-body" (dblclick)="open(req)">
+    <div class="card-body" (click)="open(req)">
       <!-- {{req|json}} -->
       <p><span><b>Category :</b> {{req.category}} </span> <span *ngIf="req.company" class="float-right">Company :{{req.company}}</span> </p>
       <p><b>Publcation Details :</b>{{req.pubDetails}}</p>
@@ -34,7 +33,7 @@
 
   <div class="card mb-2"  *ngFor="let req of completedReq|async;index as i">
     <div class="card-header text-white" [ngClass]="{'bg-success':(req.status==='Accepted'),'bg-danger':(req.status==='Rejected')}">{{req.status}} <span class="float-right">{{req?.rejectedBy}}</span></div>
-    <div class="card-body" (dblclick)="open(req)">
+    <div class="card-body" (click)="open(req)">
       <!-- {{req|json}} -->
       <p><span><b>Category :</b> {{req.category}} </span> <span *ngIf="req.company" class="float-right">Company :{{req.company}}</span> </p>
       <p><b>Publcation Details :</b>{{req.pubDetails}}</p>

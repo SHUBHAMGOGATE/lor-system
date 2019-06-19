@@ -11,7 +11,7 @@
         <h3>Login</h3>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="username">User Name</label>
+            <label for="username">Email</label>
             <input type="text" class="form-control" id="username" placeholder="ExampleUserName" formControlName="username">
           </div>
           <div class="form-group">
@@ -24,6 +24,7 @@
               <button class="btn btn-success float-right mr-5" (click)="router.navigate(['/register'])">Register</button>
               </div>
         </form>
+        <div class="w-100" style="text-align:center"><button class="btn btn-secondary" (click)="onChangePassword()">Forgot Password?</button></div>
       </div>
     </div>
   </div>

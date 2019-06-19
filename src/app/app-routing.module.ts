@@ -7,12 +7,23 @@ import { RequestFormComponent } from './request-form/request-form.component';
 import { StudentRequestStatusComponent } from './student-request-status/student-request-status.component';
 import { RequestDataTableComponent } from './request-data-table/request-data-table.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { DocumentUploadComponent } from './document-upload/document-upload.component';
+import { ChangeEmailComponent } from './change-email/change-email.component';
 
 const routes: Routes = [
   {
     path:'',
     redirectTo:'login',
     pathMatch:'full'
+  },
+  {
+    path:'changePassword',
+    component:ChangePasswordComponent
+  },
+  {
+    path:'changeEmail',
+    component:ChangeEmailComponent
   },
   {
     path: 'login',
@@ -44,7 +55,8 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       {path: 'request', component: RequestDataTableComponent},
-      {path: 'profile', component:ProfileViewComponent}
+      {path: 'profile', component:ProfileViewComponent},
+      {path: 'documents',component:DocumentUploadComponent}
     ]
   },
   {
@@ -52,7 +64,8 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       {path: 'request', component: RequestDataTableComponent},
-      {path: 'profile', component:ProfileViewComponent}
+      {path: 'profile', component:ProfileViewComponent},
+      {path: 'documents',component:DocumentUploadComponent}
     ]
   }
 ];
