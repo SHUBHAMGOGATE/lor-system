@@ -148,12 +148,11 @@
             <div class="form-group" *ngIf="role.value!=1" >
               <label for="dept">Department</label>
               <select id="dept" class="form-control" formControlName="dept">
-                <option value="COMPS" selected>Computer Science</option>
+                <option value="COMPS" selected>Computer</option>
                 <option value="IT">Information Technology</option>
-                <option value="EXTC">Electronics and Telecomunication</option>
+                <option value="EXTC">Electronics and Telecommunication</option>
                 <option value="ETRX">Electronics</option>
-                <option value="MCA">Master of Commputer Application</option>
-
+                <option value="MCA">Master of Computer Application</option>
               </select>
               <div *ngIf="dept.invalid && (dept.dirty || dept.touched)" class="alert alert-danger col">
                   <div *ngIf="dept.errors.required">
