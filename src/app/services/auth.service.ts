@@ -27,7 +27,7 @@ export class AuthService {
 
             console.log(user);
               // login successful if there's a jwt token in the response
-              if (user && user.role!=null) {
+              if (user.token && user.role!=null) {
                   switch (user.role) {
                     case 0:
                       user.role="student";

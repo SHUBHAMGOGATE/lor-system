@@ -9,7 +9,7 @@
               <p><b>Email : </b>{{user.email}}</p>
               <p *ngIf="user.uid"><b >UID : </b>{{user.uid}}</p>
               <p><b>Contact : </b>{{user.contact}}</p>
-              <p><b>Department : </b>{{user.dept}}</p>
+              <p *ngIf="user.dept"><b>Department : </b>{{user.dept}}</p>
               <p *ngIf="user.role==0"><b>Role : </b> Student</p>
               <p *ngIf="user.role==1"><b>Role : </b> TPO</p>
               <p *ngIf="user.role==2"><b>Role : </b> HOD</p>

@@ -37,6 +37,7 @@ const routes: Routes = [
     path: 'student',
     component: HomeComponent,
     children: [
+      {path: '' ,component:RequestFormComponent},
       {path: 'request', component: RequestFormComponent},
       {path: 'status' , component:StudentRequestStatusComponent},
       {path: 'profile', component:ProfileViewComponent}
@@ -46,6 +47,7 @@ const routes: Routes = [
     path: 'tpo',
     component: HomeComponent,
     children: [
+      {path: '' ,component:RequestDataTableComponent},
       {path: 'request', component: RequestDataTableComponent},
       {path: 'profile', component:ProfileViewComponent}
     ]
@@ -54,6 +56,7 @@ const routes: Routes = [
     path: 'hod',
     component: HomeComponent,
     children: [
+      {path: '' ,component:RequestDataTableComponent},
       {path: 'request', component: RequestDataTableComponent},
       {path: 'profile', component:ProfileViewComponent},
       {path: 'documents',component:DocumentUploadComponent}
@@ -63,6 +66,7 @@ const routes: Routes = [
     path: 'teacher',
     component: HomeComponent,
     children: [
+      {path: '' ,component:RequestDataTableComponent},
       {path: 'request', component: RequestDataTableComponent},
       {path: 'profile', component:ProfileViewComponent},
       {path: 'documents',component:DocumentUploadComponent}

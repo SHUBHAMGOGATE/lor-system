@@ -20,6 +20,7 @@ import { InterceptorService } from './helpers/interceptor.service';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DocumentUploadComponent } from './document-upload/document-upload.component';
 import { ChangeEmailComponent } from './change-email/change-email.component';
+import { TokenInterceptor } from './helpers/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,10 @@ import { ChangeEmailComponent } from './change-email/change-email.component';
     HttpClientModule,
     NgbModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS,useClass:InterceptorService, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS,useClass:InterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true}
+  ],
   bootstrap: [AppComponent],
   entryComponents:[RequestModalComponent,RejectModalComponent,AlertModalComponent],
 

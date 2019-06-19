@@ -18,13 +18,13 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      uid:['',Validators.required],
+      uid:[0],
       email: ['', Validators.required],
       contact: ['',Validators.required],
       password: ['', Validators.required],
       retype_password: ['', Validators.required],
       role: ['', Validators.required],
-      dept: ['', Validators.required]
+      dept: ['']
     });
     this.otp=new FormControl('',Validators.compose([Validators.minLength(6),Validators.maxLength(6)]))
     this.step=0;
@@ -80,6 +80,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.registerForm.value)
+    if(this.role.value!=0 || (this.role.value==0 && this.uid.value!=0)){
+    let temp=this.registerForm.value;
+    temp["key"]=this.otp.value
     console.log(this.registerForm);
     this.userService.registerUser(this.registerForm.value).subscribe(
       x => {
@@ -90,5 +94,6 @@ export class RegisterComponent implements OnInit {
         console.log(err);
       }
     );
+    }
   }
 }
