@@ -16,15 +16,20 @@ import { FormControl } from '@angular/forms';
 })
 export class RequestDataTableComponent implements OnInit {
   public data$;
-
+  public pendingRequestDataLoaded:boolean=false;
+  public completedRequestDataLoaded:boolean=false;
   constructor(
     public activatedRoute: ActivatedRoute,
     private modalService: NgbModal ,
     private requestService: RequestService ,
     private authService: AuthService)
     {
+      this.completedRequestDataLoaded=false;
+      this.pendingRequestDataLoaded=false;
       this.authService.currentUser.subscribe(x => {this.data$ = x.role; });
     this.requestService.getPendingRequests().subscribe(x => {
+      this.pendingRequestDataLoaded=true;
+      this.completedRequestDataLoaded=true;
       this.pendingReqList$ = x;
       this.pendingReqList_filtered$=this.pendingFormFilter.valueChanges.pipe(
         startWith(''),

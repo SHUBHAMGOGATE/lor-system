@@ -25,8 +25,9 @@ export class RequestFormComponent implements OnInit {
       category: ['', Validators.required],
       company: [''],
       pubDetails:['',Validators.required],
+      reasonForLOR:['',Validators.required],
       prof: ['', Validators.required],
-      branch: ['', Validators.required]
+      branch: ['', Validators.required],
 
     });
     this.userService.viewProfessors().subscribe(

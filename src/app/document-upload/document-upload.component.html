@@ -1,11 +1,16 @@
 {{documents|async}}
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let d of documents|async">
+<ul class="list-group" *ngIf="isPageLoaded$|async;else loading">
+  <li class="list-group-item" *ngFor="let d of documents|async;index as i">
       {{d.filename}}
     <div class="float-right">
-
-        <button class="btn btn-success ml-2" (click)="download(d.filename)">Download</button>
-        <button class="btn btn-danger ml-2" (click)="delete(d.filename)">Delete</button>
+        <span *ngIf="downloading_errors[d.filename]" class="alert alert-danger">{{downloading_errors[d.filename]}}</span>
+        <span *ngIf="deletion_errors[d.filename]" class="alert alert-danger">{{deletion_errors[d.filename]}}</span>
+        <button class="btn btn-success ml-2" (click)="download(d.filename)">Download
+            <span class="spinner-border spinner-border-sm" *ngIf="downLoading[d.filename]" role="status"></span>
+        </button>
+        <button class="btn btn-danger ml-2" (click)="delete(d.filename)">Delete
+            <span class="spinner-border spinner-border-sm" *ngIf="deleting[d.filename]" role="status"></span>
+        </button>
 
     </div>
   </li>
@@ -36,4 +41,9 @@
     </form>
   </li>
 </ul>
-
+<ng-template #loading>
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" style="width: 5rem; height: 5rem; margin: auto;" role="status">
+    </div>
+  </div>
+</ng-template>

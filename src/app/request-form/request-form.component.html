@@ -6,20 +6,20 @@
         <form [formGroup]="request_form" (ngSubmit)="onSubmit()">
 
           <div class="form-row">
-            <div class="col form-group">
+            <div class="col-md-4 form-group">
               <label for="yearofgrad">Year of Graduation</label>
               <select id="yearofgrad" class="form-control" formControlName="yearOfGrad">
                 <option value="{{y}}" *ngFor="let y of years">{{y}}</option>
               </select>
             </div>
-            <div class="col form-group">
+            <div class="col-md-4 form-group">
               <label for="category">category</label>
               <select id="category" class="form-control" formControlName="category">
                 <option value="1">1</option>
                 <option value="2">2</option>
               </select>
             </div>
-            <div class="col form-group">
+            <div class="col-md-4 form-group">
               <label for="company">Company( if placed )</label>
               <input type="text" class="form-control" formControlName="company">
             </div>
@@ -27,6 +27,10 @@
           <div class="form-group">
             <label for="pubdetails">Publication Details</label>
             <textarea class="form-control" formControlName="pubDetails"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="pubdetails">Reason For LOR</label>
+            <textarea class="form-control" formControlName="reasonForLOR"></textarea>
           </div>
           <div class="form-row">
           <div class="form-group col">

@@ -14,7 +14,9 @@ import { Router } from '@angular/router';
 export class ProfileViewComponent implements OnInit {
 
   public user:Observable<any>;
-  constructor(private userService:UserService,private fb:FormBuilder,private authService:AuthService,private router:Router) { }
+  constructor(private userService:UserService,private fb:FormBuilder,private authService:AuthService,private router:Router) {
+
+   }
   user_form:FormGroup;
   ngOnInit() {
     this.user_form=this.fb.group({

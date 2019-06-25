@@ -11,12 +11,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
-
+  public errmsgs:string="";
   constructor(private authservice: AuthService, private fb: FormBuilder, public router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required,Validators.email])],
       password: ['', Validators.required]
     });
     if(this.authservice.currentUser!=null){
@@ -25,11 +25,21 @@ export class LoginComponent implements OnInit {
     }
   }
 
+public get email()  {
+  return this.loginForm.controls.email;
+}
+
+
+public get password()  {
+  return this.loginForm.controls.password;
+}
+
+
   onSubmit() {
-    const username: string = this.loginForm.get('username').value;
+    const email: string = this.loginForm.get('email').value;
     const password: string = this.loginForm.get('password').value;
     console.log(this.loginForm.value);
-    this.authservice.login(username, password).subscribe(
+    this.authservice.login(email, password).subscribe(
       user => {
         console.log(user);
         const role: string = user['role'];
@@ -37,6 +47,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log(error);
+        this.errmsgs=error.error.message;
       }
     );
   }

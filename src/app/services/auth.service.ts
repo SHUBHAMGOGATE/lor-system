@@ -58,9 +58,10 @@ export class AuthService {
       localStorage.removeItem('currentUser');
       this.currentUserSubject.next(null);
   }
-  updateEmail(email){
+  updateEmail(email,token){
     let currentUser=JSON.parse(localStorage.getItem('currentUser'));
         currentUser['email']=email;
+        currentUser['token']=token;
         localStorage.setItem('currentUser',JSON.stringify(currentUser))
         this.currentUserSubject.next(currentUser);
   }

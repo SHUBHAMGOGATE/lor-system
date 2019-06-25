@@ -28,12 +28,12 @@
             </div>
             <div class="form-row">
             <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)" class="alert alert-danger col">
-                <div *ngIf="first_name.errors.required">
+                <div *ngIf="first_name.errors['required']">
                   First Name is required.
                 </div>
             </div>
             <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="alert alert-danger col">
-                <div *ngIf="last_name.errors.required">
+                <div *ngIf="last_name.errors['required']">
                   Last Name is required.
                 </div>
               </div>
@@ -47,7 +47,7 @@
                 <option value="2">HOD</option>
               </select>
               <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger col">
-                  <div *ngIf="role.errors.required">
+                  <div *ngIf="role.errors['required']">
                     Role is required.
                   </div>
               </div>
@@ -80,12 +80,12 @@
             </div>
             <div class="form-row">
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger col">
-                <div *ngIf="email.errors.required">
+                <div *ngIf="email.errors['required']">
                   Email is required.
                 </div>
             </div>
             <div *ngIf="contact.invalid && (contact.dirty || contact.touched)" class="alert alert-danger col">
-                <div *ngIf="contact.errors.required">
+                <div *ngIf="contact.errors['required']">
                   Contact is required.
                 </div>
               </div>
@@ -110,12 +110,15 @@
             <ng-template #elseblock>
                 <div class="form-row">
                     <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger col">
-                        <div *ngIf="password.errors.required">
+                        <div *ngIf="password.errors['required'];else format">
                           Password is required.
                         </div>
+                        <ng-template #format>
+                          Password requires one lower case letter, one upper case letter, one digit, 6-3 length, and no spaces
+                        </ng-template>
                     </div>
-                    <div *ngIf="retype_password.invalid && (retype_password.dirty || retype_password.touched)" class="alert alert-danger col">
-                        <div *ngIf="retype_password.errors.required">
+                    <div *ngIf="password.valid && retype_password.invalid && (retype_password.dirty || retype_password.touched)" class="alert alert-danger col">
+                        <div *ngIf="retype_password.errors['required']">
                           You Must Retype the password.
                         </div>
                       </div>
@@ -155,7 +158,7 @@
                 <option value="MCA">Master of Computer Application</option>
               </select>
               <div *ngIf="dept.invalid && (dept.dirty || dept.touched)" class="alert alert-danger col">
-                  <div *ngIf="dept.errors.required">
+                  <div *ngIf="dept.errors['required']">
                     Department is required.
                   </div>
               </div>
@@ -171,3 +174,7 @@
       </div>
     </div>
   </div>
+  <pre>
+    {{password.errors|json}}
+
+  </pre>

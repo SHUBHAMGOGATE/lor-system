@@ -7,10 +7,11 @@
   <div class="modal-body">
     <p><b>{{data.first_name}} {{data.last_name}}</b></p>
     <p><b>UID :</b> {{data.uid}}</p>
+    <p><b>Department : </b>{{data.dept}}</p>
     <p><b>email :</b> {{data.email}} <br> <b>contact</b> :{{data.contact}}</p>
     <p><b>Category :</b> {{data.category}} <br>  <b>Year of Grad :</b> {{data.yearOfGrad}}  <br>  <b>Company :</b> {{data.company}} </p>
     <p><b>Publication Details :</b> {{data.pubDetails}}</p>
-    <p><b>Professor :</b> {{data.pfirst_name}} {{data.plast_name}}<br> <b>Branch :</b> {{data.branch}} </p>
+    <p><b>Professor :</b> {{data.pfirst_name}} {{data.plast_name}}<br> <b>Professor's Branch :</b> {{data.pbranch}} </p>
     <p> <b>Status :</b> {{data.status}} <span *ngIf="data.reasonOfRejection"><br><b>Reason of Rejection :</b> {{data.reasonOfRejection}}</span> </p>
   </div>
   <div class="modal-footer">

@@ -21,8 +21,12 @@ export class RegisterComponent implements OnInit {
       uid:[0],
       email: ['', Validators.required],
       contact: ['',Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(`^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{4,16}$`)
+      ])],
       retype_password: ['', Validators.required],
+      //Password expresion that requires one lower case letter, one upper case letter, one digit, 6-3 length, and no spaces
       role: ['', Validators.required],
       dept: ['']
     });

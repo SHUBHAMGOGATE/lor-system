@@ -11,12 +11,25 @@
         <h3>Login</h3>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="username">Email</label>
-            <input type="text" class="form-control" id="username" placeholder="ExampleUserName" formControlName="username">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" placeholder="ExampleUserName" formControlName="email">
+            <label for="email" *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger col text-muted text-sm">
+              <span *ngIf="email.errors['required']">
+                Email is required.
+              </span>
+              <span *ngIf="email.errors['email']">
+                Improper Email.
+              </span>
+            </label>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+            <label for="password" *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger text-muted col">
+              <span *ngIf="password.errors['required']">
+                Password is required.
+              </span>
+            </label>
           </div>
           <div class="w-100" style="text-align: center">
               <button type="submit" class="btn btn-primary float-left ml-5" [disabled]="loginForm.status!='VALID'">Login</button>
@@ -24,7 +37,8 @@
               <button class="btn btn-success float-right mr-5" (click)="router.navigate(['/register'])">Register</button>
               </div>
         </form>
-        <div class="w-100" style="text-align:center"><button class="btn btn-secondary" (click)="onChangePassword()">Forgot Password?</button></div>
+        <div class="alert alert-danger w-100 mt-3" *ngIf="errmsgs">{{errmsgs}}</div>
+        <div class="w-100 mt-3" style="text-align:center"><button class="btn btn-secondary" (click)="onChangePassword()">Forgot Password?</button></div>
       </div>
     </div>
   </div>

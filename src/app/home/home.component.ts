@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
     }
   ];
   public navLinks: any;
+  public isCollapsed=false;
   ngOnInit() {
     this.status = false;
     console.log(this.router.url.split('/')[1]);

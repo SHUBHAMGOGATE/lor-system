@@ -29,12 +29,12 @@
                           <i class="far fa-caret-square-left"></i>
                       </ng-template>
                     </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" (click)="isCollapsed=!isCollapsed" aria-controls="navbarSupportedContent" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
+                    <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
+                        <ul class="nav navbar-nav ml-auto nav-dark">
                           <li class="nav-item">
                             <a class="nav-link"  (click)="logout()">Logout</a>
                           </li>

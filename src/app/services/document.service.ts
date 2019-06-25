@@ -10,6 +10,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class DocumentService {
 
   private documentsListSubject:BehaviorSubject<any>;
+  private isPageLoaded:BehaviorSubject<boolean>;
+
+  public get isPageLoaded$() : Observable<boolean> {
+    return this.isPageLoaded.asObservable()
+  }
 
   public get documentsList() : Observable<any> {
     return this.documentsListSubject.asObservable();
@@ -17,12 +22,14 @@ export class DocumentService {
 
   constructor(private http:HttpClient,private authservice:AuthService) {
     this.documentsListSubject=new BehaviorSubject([]);
+    this.isPageLoaded=new BehaviorSubject(false);
     this.http.get("http://localhost:3000/LORFormats/filenames",{
       params:new HttpParams().set('email',this.authservice.currentUserValue.email)
     }).subscribe(
       x=>{
         console.log(x);
         this.documentsListSubject.next(x);
+        this.isPageLoaded.next(true);
       },
       err=>{
         console.log(err);

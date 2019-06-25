@@ -23,11 +23,11 @@
               <th scope="col">Inspect|Accept|Reject</th> -->
               <th scope="col" *ngFor="let th of visibleFields[data$].th">{{th}}</th>
             </tr>
-            <tr>
+            <!-- <tr>
 
-            </tr>
+            </tr> -->
           </thead>
-        <tbody>
+        <tbody *ngIf="pendingRequestDataLoaded;else loadingPendingRequestData">
           <tr *ngFor="let req of pendingReqList_filtered$|async;index as i">
             <th scope="row">{{req.uid}}</th>
             <td>{{req.first_name}} {{req.last_name}}</td>
@@ -36,6 +36,11 @@
 
           </tr>
         </tbody>
+        <ng-template #loadingPendingRequestData>
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </ng-template>
     </table>
     </ng-template>
   </ngb-panel>

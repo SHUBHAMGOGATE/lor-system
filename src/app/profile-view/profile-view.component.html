@@ -1,9 +1,9 @@
-<ngb-tabset justify="justified">
+<ngb-tabset justify="justified"  *ngIf="user | async; let user; else loading">
   <ngb-tab title="Profile">
-    <ng-template ngbTabContent  *ngIf="user | async; let user; else loading">
+    <ng-template ngbTabContent  >
       <div class="jumbotron">
       <div class="container">
-        <div class="row">
+        <div class="row" >
           <div class="col-md-6 offset-md-3">
               <h3>{{user.first_name|titlecase}} {{user.last_name|titlecase}}</h3>
               <p><b>Email : </b>{{user.email}}</p>
@@ -19,12 +19,10 @@
       </div>
     </div>
     </ng-template>
-    <ng-template #loading>
-      <h1>Loading</h1>
-    </ng-template>
+
   </ngb-tab>
   <ngb-tab title="Edit">
-      <ng-template ngbTabContent *ngIf="user | async; let user">
+      <ng-template ngbTabContent>
         <div class="jumbotron">
           <div class="container">
             <div class="row">
@@ -47,8 +45,7 @@
                         <input type="number"  id="contact" class="form-control" formControlName="contact" >
                       </div>
                       <div class="form-group mb-5">
-                          <button type="submit" class="form-control btn btn-primary">CHANGE CONTACTS</button>
-
+                          <button type="submit" class="form-control btn btn-primary" [disabled]="user_form.errors">CHANGE CONTACTS</button>
                       </div>
                     </form>
                     <hr>
@@ -66,3 +63,8 @@
     </ng-template>
   </ngb-tab>
 </ngb-tabset>
+<ng-template #loading>
+    <div class="text-center w-100">
+      <div class="spinner-border" role="status"></div>
+    </div>
+    </ng-template>
