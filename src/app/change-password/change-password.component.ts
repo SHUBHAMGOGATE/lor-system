@@ -48,7 +48,7 @@ export class ChangePasswordComponent implements OnInit,OnDestroy {
 
 
   ngOnInit() {
-    if(this.authService.currentUserValue.email){
+    if(this.authService.currentUserValue){
       this.email_form.value.email=this.authService.currentUserValue.email;
       this.sendEmail();
     }
