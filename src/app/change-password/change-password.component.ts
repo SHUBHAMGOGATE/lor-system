@@ -48,7 +48,8 @@ export class ChangePasswordComponent implements OnInit,OnDestroy {
 
 
   ngOnInit() {
-    if(this.authService.currentUserValue.email){
+
+    if(this.authService.currentUserValue){
       this.email_form.value.email=this.authService.currentUserValue.email;
       this.sendEmail();
     }
@@ -59,7 +60,8 @@ export class ChangePasswordComponent implements OnInit,OnDestroy {
     this.authService.sendEmail(this.email_form.value.email).subscribe(
       x=>{
         this.step++;
-        this.email_form.value.email=this.authService.currentUserValue.email;
+        console.log(this.email_form.value.email)
+        //this.email_form.value.email=this.authService.currentUserValue.email;
         this.email_form_loader=false;
         this.email_form_error=null
         // if(x["status"]===200){

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile-view',
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class ProfileViewComponent implements OnInit {
 
   public user:Observable<any>;
-  constructor(private userService:UserService,private fb:FormBuilder,private authService:AuthService,private router:Router) {
+  constructor(private userService:UserService,private fb:FormBuilder,private authService:AuthService,private router:Router,private route:ActivatedRoute) {
 
    }
   user_form:FormGroup;
@@ -40,7 +40,8 @@ export class ProfileViewComponent implements OnInit {
     console.log(this.user_form.value);
     this.userService.updateUser(this.user_form.value).subscribe(
       x=>{
-        console.log(x)
+        this.router.navigate(['./']);
+        console.log(x);
       }
     )
   }

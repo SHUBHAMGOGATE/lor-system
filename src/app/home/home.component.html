@@ -17,26 +17,27 @@
         <!-- Page Content  -->
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-dark  bg-light">
                 <div class="container-fluid">
 
-                    <button type="button" id="sidebarCollapse" style="border-radius: 1px" class="btn btn-info" (click)="clickEvent($event)" >
-                      <span *ngIf="status;else alt">
-                          <i class="far fa-caret-square-right"></i>
-                          <span>LOR System</span>
+                    <button type="button" id="sidebarCollapse" style="border-radius: 1px" class="btn" (click)="clickEvent($event)" >
+                      <span *ngIf="!status;else collapse">
+                        <i class="fas fa-bars"></i>
+
                       </span>
-                      <ng-template #alt>
-                          <i class="far fa-caret-square-left"></i>
+                      <ng-template #collapse>
+
+                        <h3>LOR System</h3>
                       </ng-template>
                     </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" (click)="isCollapsed=!isCollapsed" aria-controls="navbarSupportedContent" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" style="border-radius: 1px" type="button" (click)="isCollapsed=!isCollapsed" aria-controls="navbarSupportedContent" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
 
                     <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
                         <ul class="nav navbar-nav ml-auto nav-dark">
                           <li class="nav-item">
-                            <a class="nav-link"  (click)="logout()">Logout</a>
+                            <button class="btn"  (click)="logout()">Logout</button>
                           </li>
                         </ul>
                     </div>
