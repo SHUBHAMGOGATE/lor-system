@@ -11,15 +11,17 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./request-form.component.css']
 })
 export class RequestFormComponent implements OnInit {
+  public errorMessage: string;
   public years:number[];
   public all_professors:any;
   public filter_professors:any;
   request_form:FormGroup;
   constructor(private fb:FormBuilder,private requestService:RequestService,private router:Router,private route:ActivatedRoute,private userService:UserService) {
-    this.years=Array.from(new Array(5), (x,i) => i+2019);
+    this.years=Array.from(new Array(5), (x,i) => i+2020);
   }
 
   ngOnInit() {
+    this.errorMessage=null;
     this.request_form=this.fb.group({
       yearOfGrad:['',Validators.required],
       category: ['', Validators.required],
@@ -28,6 +30,7 @@ export class RequestFormComponent implements OnInit {
       reasonForLOR:['',Validators.required],
       prof: ['', Validators.required],
       branch: ['', Validators.required],
+      university: ['', Validators.required]
 
     });
     this.userService.viewProfessors().subscribe(
@@ -42,7 +45,11 @@ export class RequestFormComponent implements OnInit {
   onSubmit(){
     console.log(this.request_form.value);
     this.requestService.makeRequest(this.request_form.value).subscribe(
-      x=>this.router.navigate(['../status'],{relativeTo:this.route})
+      x=>{
+        this.router.navigate(['../status'],{relativeTo:this.route});
+        this.errorMessage=null;
+      },
+      err =>this.errorMessage=err.error.message
     );
   }
   filterProf(event){

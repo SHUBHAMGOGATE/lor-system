@@ -41,6 +41,16 @@ export class ProfileViewComponent implements OnInit {
     this.userService.updateUser(this.user_form.value).subscribe(
       x=>{
         console.log(x)
+        this. user=this.userService.getUser().pipe(map(x=>{
+          console.log(x)
+          this.user_form.patchValue({
+            first_name:x['first_name'],
+            last_name:x['last_name'],
+            contact:x['contact']
+          })
+    
+          return x
+        }))
       }
     )
   }
