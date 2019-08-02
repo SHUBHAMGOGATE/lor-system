@@ -1,13 +1,15 @@
 
 <div class="jumbotron">
     <div class="container">
-      <div class="row">
+      <!-- <div class="row">
         <header class="col-md-6 m-5" style="text-align:center">
           <h1>LOR System</h1>
         </header>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-md-6 offset-md-3">
+            <img src="https://img.collegepravesh.com/2018/11/SPIT-Mumbai-Logo.png" alt="spit"  style="margin-left:30%;width:200px">
+            <h1 style="text-align: center">LOR System</h1>
           <h3>Register</h3>
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div *ngIf="step==2">
@@ -174,7 +176,7 @@
       </div>
     </div>
   </div>
-  <pre>
+  <!-- <pre>
     {{password.errors|json}}
 
-  </pre>
+  </pre> -->

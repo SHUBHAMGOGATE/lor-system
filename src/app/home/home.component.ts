@@ -55,9 +55,11 @@ export class HomeComponent implements OnInit {
     }
   ];
   public navLinks: any;
-  public isCollapsed = false;
+  public isCollapsed=false;
+  public name: any;
   ngOnInit() {
     this.status = false;
+    this.name = JSON.parse(localStorage.getItem("currentUser")).name;
     console.log(this.router.url.split('/')[1]);
     this.navLinks = this.navInfo.find(element => {
       return element.role === this.router.url.split('/')[1];

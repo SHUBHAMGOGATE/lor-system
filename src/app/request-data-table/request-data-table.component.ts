@@ -116,7 +116,8 @@ export class RequestDataTableComponent implements OnInit {
     modalRef.componentInstance.data.subscribe(x => {
       console.log(req);
       this.requestService.rejectRequests(x, req._id, req.level).subscribe(x => {
-        this.pendingReqList$.splice(index, 1);
+        this.complReqList$=this.requestService.getCompletedRequests()
+        this.pendingReqList$=this.requestService.getPendingRequests()
       });
     });
   }
@@ -124,7 +125,8 @@ export class RequestDataTableComponent implements OnInit {
     console.log(req);
     this.requestService.acceptRequests(req._id, req.level).subscribe(x => {
       console.log('DONE');
-      this.pendingReqList$.splice(index, 1);
+      this.complReqList$=this.requestService.getCompletedRequests()
+      this.pendingReqList$=this.requestService.getPendingRequests()
     });
   }
 }

@@ -3,11 +3,15 @@
         <!-- Sidebar  -->
         <nav id="sidebar" [ngClass]="{'active':status}">
             <div class="sidebar-header">
-                <h3>LOR System</h3>
+                <div class="row"><div class="col-sm-4"><img src="https://img.collegepravesh.com/2018/11/SPIT-Mumbai-Logo.png" alt="" width="64px" style="display: inline-block">
+                </div>
+                <div class="col-sm-8">
+                        <small>Sardar Patel Institute of Technology</small></div></div>
+                <!-- <h3>LOR System</h3> -->
             </div>
 
             <ul class="list-unstyled components">
-                <p>{{navLinks.role}}</p>
+                <p>{{name}} : {{navLinks.role}}</p>
                 <li *ngFor="let link of navLinks.links">
                     <a [routerLink]="[link.link]">{{link.tag}}</a>
                 </li>
@@ -33,7 +37,6 @@
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" style="border-radius: 1px" type="button" (click)="isCollapsed=!isCollapsed" aria-controls="navbarSupportedContent" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
-
                     <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
                         <ul class="nav navbar-nav ml-auto nav-dark">
                           <li class="nav-item">

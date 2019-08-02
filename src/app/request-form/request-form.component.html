@@ -11,13 +11,15 @@
               <select id="yearofgrad" class="form-control" formControlName="yearOfGrad">
                 <option value="{{y}}" *ngFor="let y of years">{{y}}</option>
               </select>
+              <div class="alert alert-danger" *ngIf="!request_form.controls.yearOfGrad.valid && (request_form.controls.yearOfGrad.touched)">This field is required</div>
             </div>
             <div class="col-md-4 form-group">
-              <label for="category">category</label>
+              <label for="category">Category</label>
               <select id="category" class="form-control" formControlName="category">
-                <option value="1">1</option>
-                <option value="2">2</option>
+                <option value="1">1(6 Month Internship)</option>
+                <option value="2">2(2 Month Internship)</option>
               </select>
+              <div class="alert alert-danger" *ngIf="!request_form.controls.category.valid && (request_form.controls.category.touched)">This field is required</div>
             </div>
             <div class="col-md-4 form-group">
               <label for="company">Company( if placed )</label>
@@ -27,14 +29,21 @@
           <div class="form-group">
             <label for="pubdetails">Publication Details</label>
             <textarea class="form-control" formControlName="pubDetails"></textarea>
+            <div class="alert alert-danger" *ngIf="!request_form.controls.pubDetails.valid && (request_form.controls.pubDetails.dirty || request_form.controls.pubDetails.touched)">This field is required</div>
           </div>
           <div class="form-group">
             <label for="pubdetails">Reason For LOR</label>
             <textarea class="form-control" formControlName="reasonForLOR"></textarea>
+            <div class="alert alert-danger" *ngIf="!request_form.controls.reasonForLOR.valid && (request_form.controls.reasonForLOR.dirty || request_form.controls.reasonForLOR.touched)">This field is required</div>
+          </div>
+          <div class="form-group">
+            <label for="pubdetails">University Name</label>
+            <textarea class="form-control" formControlName="university"></textarea>
+            <div class="alert alert-danger" *ngIf="!request_form.controls.university.valid && (request_form.controls.university.dirty || request_form.controls.university.touched)">This field is required</div>
           </div>
           <div class="form-row">
           <div class="form-group col">
-              <label for="branch">Branch</label>
+              <label for="branch">Branch of Professor</label>
               <select class="form-control" formControlName="branch" (change)="filterProf($event)">
                 <option value="COMPS">Computer</option>
                 <option value="IT">Information Technology</option>
@@ -42,16 +51,21 @@
                 <option value="ETRX">Electronics</option>
                 <option value="MCA">Master of Computer Application</option>
               </select>
+              <div class="alert alert-danger" *ngIf="!request_form.controls.branch.valid && (request_form.controls.branch.touched)">This field is required</div>
             </div>
             <div class="form-group col">
-              <label for="prof">Professor</label>
+              <label for="prof">Professor's Name</label>
               <select  class="form-control" formControlName="prof">
                 <option value="{{prof.first_name}} {{prof.last_name}}" *ngFor="let prof of filter_professors">{{prof.first_name}} {{prof.last_name}}</option>
               </select>
+              <div class="alert alert-danger" *ngIf="!request_form.controls.prof.valid && (request_form.controls.prof.touched)">This field is required</div>
             </div>
           </div>
           <button type="submit" class="btn btn-primary"[disabled]="!request_form.valid">Submit Request</button>
         </form>
+        <div class="alert alert-danger" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
       </div>
     </div>
   </div>

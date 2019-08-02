@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.compose([Validators.required,Validators.email])],
       password: ['', Validators.required]
     });
-    if(this.authservice.currentUser!=null){
+    if(this.authservice.currentUserValue!=null){
       const role:string = this.authservice.currentUserValue.role;
       this.router.navigate(['/' + role]);
     }
