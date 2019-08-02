@@ -21,6 +21,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { DocumentUploadComponent } from './document-upload/document-upload.component';
 import { ChangeEmailComponent } from './change-email/change-email.component';
 import { TokenInterceptor } from './helpers/token.interceptor';
+import { AdminComponent } from './admin/admin.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { TokenInterceptor } from './helpers/token.interceptor';
     ChangePasswordComponent,
     DocumentUploadComponent,
     ChangeEmailComponent,
+    AdminComponent,
+    AnalyticsComponent,
   ],
   imports: [
     BrowserModule,

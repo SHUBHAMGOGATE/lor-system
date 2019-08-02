@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public router: Router,private authService:AuthService) { }
+  constructor(public router: Router, private authService: AuthService) { }
   public status: boolean;
   public navInfo: any = [
     {
@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
       links: [
         {tag: 'Lor requests', link: './request'},
         {tag: 'View Profile', link: './profile'},
-        {tag: 'Upload/Download LOR Format', link:'./documents'}
+        {tag: 'Analytics', link: './analytics'},
+        // {tag: 'Upload/Download LOR Format', link:'./documents'}
       ]
     },
     {
@@ -40,12 +41,21 @@ export class HomeComponent implements OnInit {
       links: [
         {tag: 'Lor requests', link: './request'},
         {tag: 'View Profile', link: './profile'},
-        {tag: 'Upload/Download LOR Format', link:'./documents'}
+        // {tag: 'Upload/Download LOR Format', link:'./documents'}
+      ]
+    },
+    {
+      role: 'admin',
+      links: [
+        {tag: 'Remove Users', link: './userRemove'},
+        {tag: 'Add Users', link: './userAdd'},
+        {tag: 'Analytics', link: './analytics'},
+        {tag: 'View Profile', link: './profile'}
       ]
     }
   ];
   public navLinks: any;
-  public isCollapsed=false;
+  public isCollapsed = false;
   ngOnInit() {
     this.status = false;
     console.log(this.router.url.split('/')[1]);
@@ -57,7 +67,7 @@ export class HomeComponent implements OnInit {
   clickEvent(event) {
     this.status = ! this.status;
   }
-  logout(){
+  logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
   }

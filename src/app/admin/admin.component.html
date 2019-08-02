@@ -1,0 +1,29 @@
+<div class="container pt-2">
+  <h2>Users</h2>
+
+  <div class="form-group w-100 "><input type="text" class="form-control" [formControl]="searchBox"></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User Name</th><th>Email id</th><th>Dept</th><th>Role</th><th>actions </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userListFiltered|async;index as i">
+        <td>{{user.first_name}} {{user.last_name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.dept}}</td>
+        <td><div [ngSwitch]="user.role">
+          <div *ngSwitchCase="0">Student</div>
+          <div *ngSwitchCase="1">TPO</div>
+          <div *ngSwitchCase="2">HOD</div>
+          <div *ngSwitchCase="3">Professor</div>
+          <div *ngSwitchDefault>-</div>
+        </div></td>
+        <td><button class="btn btn-danger" (click)="removeUser(user.email)">Remove</button></td>
+      </tr>
+    </tbody>
+
+  </table>
+  <pre>{{userList|json}}</pre>
+</div>

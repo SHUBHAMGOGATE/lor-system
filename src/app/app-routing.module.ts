@@ -10,20 +10,22 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DocumentUploadComponent } from './document-upload/document-upload.component';
 import { ChangeEmailComponent } from './change-email/change-email.component';
+import { AdminComponent } from './admin/admin.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 const routes: Routes = [
   {
-    path:'',
-    redirectTo:'login',
-    pathMatch:'full'
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
-    path:'changePassword',
-    component:ChangePasswordComponent
+    path: 'changePassword',
+    component: ChangePasswordComponent
   },
   {
-    path:'changeEmail',
-    component:ChangeEmailComponent
+    path: 'changeEmail',
+    component: ChangeEmailComponent
   },
   {
     path: 'login',
@@ -37,41 +39,59 @@ const routes: Routes = [
     path: 'student',
     component: HomeComponent,
     children: [
-      {path: '' ,component:RequestFormComponent},
+      {path: '' , component: RequestFormComponent},
       {path: 'request', component: RequestFormComponent},
-      {path: 'status' , component:StudentRequestStatusComponent},
-      {path: 'profile', component:ProfileViewComponent}
+      {path: 'status' , component: StudentRequestStatusComponent},
+      {path: 'profile', component: ProfileViewComponent}
     ]
   },
   {
     path: 'tpo',
     component: HomeComponent,
     children: [
-      {path: '' ,component:RequestDataTableComponent},
+      {path: '' , component: RequestDataTableComponent},
       {path: 'request', component: RequestDataTableComponent},
-      {path: 'profile', component:ProfileViewComponent}
+      {path: 'profile', component: ProfileViewComponent}
     ]
   },
   {
     path: 'hod',
     component: HomeComponent,
     children: [
-      {path: '' ,component:RequestDataTableComponent},
+      {path: '' , component: RequestDataTableComponent},
       {path: 'request', component: RequestDataTableComponent},
-      {path: 'profile', component:ProfileViewComponent},
-      {path: 'documents',component:DocumentUploadComponent}
+      {path: 'profile', component: ProfileViewComponent},
+      {path: 'analytics', component: AnalyticsComponent},
+      {path: 'analytics/:year', component: AnalyticsComponent},
+      {path: 'analytics/:year/:branch', component: AnalyticsComponent},
+      {path: 'analytics/:year/:branch/:professor', component: AnalyticsComponent},
+      // {path: 'documents',component:DocumentUploadComponent}
     ]
   },
   {
     path: 'teacher',
     component: HomeComponent,
     children: [
-      {path: '' ,component:RequestDataTableComponent},
+      {path: '' , component: RequestDataTableComponent},
       {path: 'request', component: RequestDataTableComponent},
-      {path: 'profile', component:ProfileViewComponent},
-      {path: 'documents',component:DocumentUploadComponent}
+      {path: 'profile', component: ProfileViewComponent},
+
+      // {path: 'documents',component:DocumentUploadComponent}
     ]
-  }
+  },
+  {
+    path: 'admin',
+    component: HomeComponent,
+    children: [
+      {path: 'userRemove', component: AdminComponent},
+      {path: 'userAdd', component: RegisterComponent},
+      {path: 'profile', component: ProfileViewComponent},
+      {path: 'analytics', component: AnalyticsComponent},
+      {path: 'analytics/:year', component: AnalyticsComponent},
+      {path: 'analytics/:year/:branch', component: AnalyticsComponent},
+      {path: 'analytics/:year/:branch/:professor', component: AnalyticsComponent},
+    ]
+  },
 ];
 
 @NgModule({

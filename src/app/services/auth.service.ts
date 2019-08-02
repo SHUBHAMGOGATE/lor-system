@@ -27,19 +27,22 @@ export class AuthService {
 
             console.log(user);
               // login successful if there's a jwt token in the response
-              if (user.token && user.role!=null) {
+              if (user.token && user.role != null) {
                   switch (user.role) {
                     case 0:
-                      user.role="student";
+                      user.role = 'student';
                       break;
                     case 1:
-                      user.role="tpo";
+                      user.role = 'tpo';
                       break;
                     case 2:
-                      user.role="hod";
+                      user.role = 'hod';
                       break;
                     case 3:
-                      user.role="teacher";
+                      user.role = 'teacher';
+                      break;
+                    case 4:
+                    user.role = 'admin';
                       break;
                     default:
                       break;
@@ -58,39 +61,39 @@ export class AuthService {
       localStorage.removeItem('currentUser');
       this.currentUserSubject.next(null);
   }
-  updateEmail(email,token){
-    let currentUser=JSON.parse(localStorage.getItem('currentUser'));
-        currentUser['email']=email;
-        currentUser['token']=token;
-        localStorage.setItem('currentUser',JSON.stringify(currentUser))
+  updateEmail(email, token) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        currentUser['email'] = email;
+        currentUser['token'] = token;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
         this.currentUserSubject.next(currentUser);
   }
-  sendEmail(email){
-    return this.http.get('http://localhost:3000/changePassword/sendMail',{
-      params:new HttpParams().set('email',email)
+  sendEmail(email) {
+    return this.http.get('http://localhost:3000/changePassword/sendMail', {
+      params: new HttpParams().set('email', email)
     });
   }
 
 
 
-  verifyOtp(email,key){
+  verifyOtp(email, key) {
     return this.http.post('http://localhost:3000/verifyPasswordOTP',
     {
       key
     },
     {
-      params:new HttpParams().set('email',email)
-    })
+      params: new HttpParams().set('email', email)
+    });
   }
 
-  changePassword(email,key,password){
+  changePassword(email, key, password) {
     return this.http.post('http://localhost:3000/changePassword/changePassword',
     {
       key,
       password
     },
     {
-      params:new HttpParams().set('email',email?email:this.currentUserValue.email)
+      params: new HttpParams().set('email', email ? email : this.currentUserValue.email)
     }
     );
   }

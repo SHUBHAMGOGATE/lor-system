@@ -1,0 +1,46 @@
+<pre>{{obs|async|json}}</pre>
+<div [ngSwitch]="type">
+  <div *ngSwitchCase="3">output</div>
+  <div *ngSwitchCase="2">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Department</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of obs|async">
+          <th scope="row" [routerLink]="['./',item.pfirst_name+' '+item.plast_name]">{{item.pfirst_name}} {{item.plast_name}}</th>
+          <td>{{item.count}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+  <div *ngSwitchCase="1">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Department</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of obs|async">
+          <th scope="row" [routerLink]="['./',item.dept]"   >
+            {{item.dept}}
+          </th>
+          <td>{{item.count}}</td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+  <div *ngSwitchDefault>
+      <ul class="list-group">
+          <li class="list-group-item" *ngFor="let item of obs|async"  [routerLink]="['./',item]" >{{item}}</li>
+        </ul>
+  </div>
+</div>

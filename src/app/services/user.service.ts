@@ -9,56 +9,65 @@ import { AuthService } from './auth.service';
 })
 export class UserService {
 
-  constructor(private httpclient: HttpClient,private authService:AuthService) { }
+  constructor(private httpclient: HttpClient, private authService: AuthService) { }
 
   registerUser(user: any) {
     return this.httpclient.post('http://localhost:3000/user/register', user);
   }
 
-  verifyEmail(email){
+  verifyEmail(email) {
     return this.httpclient.get('http://localhost:3000/verifyEmail/sendMail',
     {
-      params:new HttpParams().set('email',email)
-    })
+      params: new HttpParams().set('email', email)
+    });
   }
-  editEmail(email,key){
+  editEmail(email, key) {
     return this.httpclient.post('http://localhost:3000/user/dashboard/editEmail',
     {
       email,
       key
     },
     {
-      params:new HttpParams().set("email", this.authService.currentUserValue.email.toString())
-    })
+      params: new HttpParams().set('email', this.authService.currentUserValue.email.toString())
+    });
   }
 
-  verifyOtp(email,key){
+  verifyOtp(email, key) {
     return this.httpclient.post('http://localhost:3000/verifyEmailOTP',
     {
       key
     },
     {
-      params:new HttpParams().set('email',email)
-    })
+      params: new HttpParams().set('email', email)
+    });
   }
-  getUser(){
+  getUser() {
     return this.httpclient.get('http://localhost:3000/user/dashboard/viewProfile',
     {
-      params:new HttpParams().set("email", this.authService.currentUserValue.email.toString())
+      params: new HttpParams().set('email', this.authService.currentUserValue.email.toString())
     }
-    )
+    );
   }
-  updateUser(value){
+  updateUser(value) {
     return this.httpclient.post('http://localhost:3000/user/dashboard/editProfile',
     value,
     {
-      params:new HttpParams().set("email", this.authService.currentUserValue.email.toString())
+      params: new HttpParams().set('email', this.authService.currentUserValue.email.toString())
     }
-    )
+    );
+  }
+  getAllUsers() {
+    return this.httpclient.get('http://localhost:3000/user/getUsers');
+  }
+  viewProfessors() {
+    return this.httpclient.get('http://localhost:3000/professors');
   }
 
-  viewProfessors(){
-    return this.httpclient.get('http://localhost:3000/professors');
+  deleteUser(email) {
+    return this.httpclient.delete('http://localhost:3000/user/delete',
+    {
+      params: new HttpParams().set('email', email)
+    });
   }
 
 
