@@ -17,7 +17,13 @@ export class RequestFormComponent implements OnInit {
   public filter_professors:any;
   request_form:FormGroup;
   constructor(private fb:FormBuilder,private requestService:RequestService,private router:Router,private route:ActivatedRoute,private userService:UserService) {
-    this.years=Array.from(new Array(5), (x,i) => i+2020);
+    var d = new Date();
+    var x = d.getFullYear()+3;
+    var len = 0;
+    for(var i=2020; i<=x; i++) {
+      len++;
+    }
+    this.years=Array.from(new Array(len),(x,i) => i+2020);
   }
 
   ngOnInit() {
