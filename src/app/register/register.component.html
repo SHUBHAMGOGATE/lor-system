@@ -72,7 +72,7 @@
               <div class="col">
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" id="first_name" placeholder="a@b.com" formControlName="email">
+                  <input type="email" class="form-control" id="email" placeholder="a@b.com" formControlName="email">
                 </div>
               </div>
               <div class="col">
@@ -136,6 +136,7 @@
               <label for="otp">Enter The OTP Recieved On Your Email.</label>
               <input type="number" id="otp" [formControl]="otp" class="form-control">
             </div>
+            <div class="alert alert-danger" *ngIf="otpErrorMessage">{{otpErrorMessage}}</div>
             <button (click)="verifyOtp()" type="button" [disabled]="!otp.valid" class="btn btn-primary">Verify Otp</button>
           </div>
           <div *ngIf="step==2">

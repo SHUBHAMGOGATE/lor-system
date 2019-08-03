@@ -49,7 +49,6 @@ export class HomeComponent implements OnInit {
       links: [
         {tag: 'Remove Users', link: './userRemove'},
         {tag: 'Add Users', link: './userAdd'},
-        {tag: 'Analytics', link: './analytics'},
         {tag: 'View Profile', link: './profile'}
       ]
     }

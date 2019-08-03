@@ -1,11 +1,11 @@
 <div class="container pt-2">
   <h2>Users</h2>
 
-  <div class="form-group w-100 "><input type="text" class="form-control" [formControl]="searchBox"></div>
+  <div class="form-group w-100 "><input type="text" placeholder="Search By Name/Email/Department" class="form-control" [formControl]="searchBox"></div>
   <table class="table">
     <thead>
       <tr>
-        <th>User Name</th><th>Email id</th><th>Dept</th><th>Role</th><th>actions </th>
+        <th>Name</th><th>Email ID</th><th>Department</th><th>Role</th><th>Actions </th>
       </tr>
     </thead>
     <tbody>
@@ -25,5 +25,5 @@
     </tbody>
 
   </table>
-  <pre>{{userList|json}}</pre>
+  <!-- <pre>{{userList|json}}</pre> -->
 </div>

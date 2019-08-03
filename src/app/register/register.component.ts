@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   public otp:FormControl
   public step;
   public url;
+  public otpErrorMessage;
   ngOnInit() {
     this.route.params.subscribe(
       p=>{
@@ -53,6 +54,10 @@ export class RegisterComponent implements OnInit {
       x=>{
         console.log(x);
         this.step++;
+        this.otpErrorMessage=null;
+      },
+      err=>{
+        this.otpErrorMessage=err.error.message;
       }
     )
   }
