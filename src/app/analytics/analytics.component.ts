@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnalyticsService } from '../services/analytics.service';
 import { Observable } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RequestModalComponent } from '../request-modal/request-modal.component';
 
 @Component({
   selector: 'app-analytics',
@@ -12,7 +14,7 @@ export class AnalyticsComponent implements OnInit {
   body;
   type=0;
   public obs:Observable<any>=null;
-  constructor(private route: ActivatedRoute,private analytics:AnalyticsService) { }
+  constructor(private route: ActivatedRoute,private analytics:AnalyticsService,private modalService:NgbModal) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -36,6 +38,10 @@ export class AnalyticsComponent implements OnInit {
         this.obs=this.analytics.getAcademicYears()
       }
     });
+  }
+  open(req) {
+    const modalRef = this.modalService.open(RequestModalComponent);
+    modalRef.componentInstance.data = req;
   }
 
 }

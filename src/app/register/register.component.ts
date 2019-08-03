@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,11 +10,17 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private userService: UserService, public router: Router, ) { }
+  constructor(private fb: FormBuilder, private userService: UserService, public router: Router,public route: ActivatedRoute ) { }
   public registerForm: FormGroup;
   public otp:FormControl
   public step;
+  public url;
   ngOnInit() {
+    this.route.params.subscribe(
+      p=>{
+        this.url=p;
+      }
+    )
     this.registerForm = this.fb.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],

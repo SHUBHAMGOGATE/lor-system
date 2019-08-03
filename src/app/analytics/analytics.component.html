@@ -1,6 +1,27 @@
-<pre>{{obs|async|json}}</pre>
+<!-- <pre>{{obs|async|json}}</pre> -->
 <div [ngSwitch]="type">
-  <div *ngSwitchCase="3">output</div>
+  <div *ngSwitchCase="3">
+    <table class="table">
+      <thead>
+          <tr>
+            <th scope="col">UID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Year of Passing</th>
+            <th scope="col">Company</th>
+            <th scope="col">Inspect</th>
+          </tr>
+        </thead>
+      <tbody>
+        <tr *ngFor="let req of obs|async;index as i">
+          <th scope="row">{{req.uid}}</th>
+          <td>{{req.first_name}} {{req.last_name}}</td>
+          <td>{{req.yearOfGrad}} </td>
+          <td>{{req?.company}} </td>
+          <td><button class="btn btn-secondary mr-3" (click)="open(req)"><i class="fas fa-external-link-alt"></i></button></td>
+        </tr>
+      </tbody>
+  </table>
+  </div>
   <div *ngSwitchCase="2">
     <table class="table">
       <thead>
@@ -23,7 +44,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Department</th>
+          <th scope="col">Professor</th>
           <th>Count</th>
         </tr>
       </thead>
@@ -39,6 +60,7 @@
     </table>
   </div>
   <div *ngSwitchDefault>
+    <h2 class="m-3">Academic Years List</h2>
       <ul class="list-group">
           <li class="list-group-item" *ngFor="let item of obs|async"  [routerLink]="['./',item]" >{{item}}</li>
         </ul>
