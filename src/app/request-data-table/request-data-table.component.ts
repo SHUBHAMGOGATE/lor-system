@@ -116,8 +116,23 @@ export class RequestDataTableComponent implements OnInit {
     modalRef.componentInstance.data.subscribe(x => {
       console.log(req);
       this.requestService.rejectRequests(x, req._id, req.level).subscribe(x => {
-        this.complReqList$=this.requestService.getCompletedRequests()
-        this.pendingReqList$=this.requestService.getPendingRequests()
+        this.requestService.getPendingRequests().subscribe(x => {
+          this.pendingRequestDataLoaded=true;
+          this.completedRequestDataLoaded=true;
+          this.pendingReqList$ = x;
+          this.pendingReqList_filtered$=this.pendingFormFilter.valueChanges.pipe(
+            startWith(''),
+            map(text => this.search(x,text))
+          )
+        });
+        this.requestService.getCompletedRequests().subscribe(x => {
+          this.complReqList$ = x;
+          this.complReqList_filtered$=this.complFormFilter.valueChanges.pipe(
+            startWith(''),
+            map(text => this.search(x,text))
+          )
+        });
+
       });
     });
   }
@@ -125,8 +140,23 @@ export class RequestDataTableComponent implements OnInit {
     console.log(req);
     this.requestService.acceptRequests(req._id, req.level).subscribe(x => {
       console.log('DONE');
-      this.complReqList$=this.requestService.getCompletedRequests()
-      this.pendingReqList$=this.requestService.getPendingRequests()
+      this.requestService.getPendingRequests().subscribe(x => {
+        this.pendingRequestDataLoaded=true;
+        this.completedRequestDataLoaded=true;
+        this.pendingReqList$ = x;
+        this.pendingReqList_filtered$=this.pendingFormFilter.valueChanges.pipe(
+          startWith(''),
+          map(text => this.search(x,text))
+        )
+      });
+      this.requestService.getCompletedRequests().subscribe(x => {
+        this.complReqList$ = x;
+        this.complReqList_filtered$=this.complFormFilter.valueChanges.pipe(
+          startWith(''),
+          map(text => this.search(x,text))
+        )
+      });
+
     });
   }
 }

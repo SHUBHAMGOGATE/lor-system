@@ -40,7 +40,7 @@
                 </div>
               </div>
             </div>
-            <div class="form-group" *ngIf="url;else alt">
+            <div class="form-group" *ngIf="url=='userAdd';else alt">
               <label for="role">Select Your Role</label>
               <select id="role" class="form-control" formControlName="role">
                 <!-- <option value="0" selected>Student</option> -->
@@ -55,7 +55,7 @@
               </div>
             </div>
             <ng-template #alt>
-              <input type="text" formControlName="role" value="0">
+              <input type="text" formControlName="role" value="0" hidden>
             </ng-template>
             <div class="form-group"  *ngIf="role.value==0">
               <label for="uid">UID</label>
@@ -85,9 +85,12 @@
             </div>
             <div class="form-row">
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger col">
-                <div *ngIf="email.errors['required']">
+                <div *ngIf="email.errors['required'];else emailNotMatch">
                   Email is required.
                 </div>
+                <ng-template #emailNotMatch>
+                  Invalid email
+                </ng-template>
             </div>
             <div *ngIf="contact.invalid && (contact.dirty || contact.touched)" class="alert alert-danger col">
                 <div *ngIf="contact.errors['required']">

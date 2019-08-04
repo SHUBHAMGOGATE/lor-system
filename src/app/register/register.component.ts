@@ -17,16 +17,17 @@ export class RegisterComponent implements OnInit {
   public url;
   public otpErrorMessage;
   ngOnInit() {
-    this.route.params.subscribe(
-      p=>{
-        this.url=p;
+    this.route.url.subscribe(
+      x=>{
+        this.url=x[0].path;
+        this.url;
       }
-    )
+    );
     this.registerForm = this.fb.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       uid:[0],
-      email: ['', Validators.required],
+      email: ['', Validators.compose([ Validators.required,Validators.pattern("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")])],
       contact: ['',Validators.required],
       password: ['', Validators.compose([
         Validators.required,

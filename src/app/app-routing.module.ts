@@ -83,6 +83,7 @@ const routes: Routes = [
     path: 'admin',
     component: HomeComponent,
     children: [
+      {path: '', redirectTo:'userAdd',pathMatch:"full"},
       {path: 'userRemove', component: AdminComponent},
       {path: 'userAdd', component: RegisterComponent},
       {path: 'profile', component: ProfileViewComponent},
