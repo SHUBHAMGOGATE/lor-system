@@ -46,7 +46,7 @@ export class DocumentUploadComponent implements OnInit {
       (res) => {this.uploadResponse = res; this.filename = 'Choose A File';},
       (err) => this.error = err,
       () => {
-        console.log("done");
+        //console.log("done");
       }
         );
   }
@@ -54,12 +54,12 @@ export class DocumentUploadComponent implements OnInit {
     this.downLoading[filename]=true;
     this.documentService.downloadDocument(filename).subscribe(
       x => {
-        console.log(x);
+        //console.log(x);
         delete this.downloading_errors[filename];
         saveAs(x, filename);
       },
       err => {
-        console.log(err);
+        //console.log(err);
         this.downloading_errors[filename]=err.error.message;
       },
       ()=>{
@@ -73,7 +73,7 @@ export class DocumentUploadComponent implements OnInit {
     this.deleting[filename]=true;
     this.documentService.deleteDocument(filename).subscribe(
       x => {
-        console.log(x);
+        //console.log(x);
         delete this.deletion_errors[filename];
       },
       error=>{
@@ -81,7 +81,7 @@ export class DocumentUploadComponent implements OnInit {
       },
       ()=>{
         delete this.deleting[filename];
-        console.log('delete')
+        //console.log('delete')
       }
     );
   }

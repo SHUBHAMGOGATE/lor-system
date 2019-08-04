@@ -25,7 +25,7 @@ export class AuthService {
       return this.http.post<any>(`http://localhost:3000/user/login`, { email, password })
           .pipe(map(user => {
 
-            console.log(user);
+            //console.log(user);
               // login successful if there's a jwt token in the response
               if (user.token && user.role != null) {
                   switch (user.role) {

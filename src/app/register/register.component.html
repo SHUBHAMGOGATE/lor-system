@@ -55,7 +55,7 @@
               </div>
             </div>
             <ng-template #alt>
-              <input type="text" formControlName="role" value="0" hidden>
+              <input type="radio" formControlName="role" value="0"><label for="role">By checking this, You confirm that you are/were a Student of Sardar Patel Institute of Technology</label>
             </ng-template>
             <div class="form-group"  *ngIf="role.value==0">
               <label for="uid">UID</label>
@@ -175,7 +175,10 @@
             <div class="row" style="text-align: center">
             <button class="btn btn-secondary col-md-3 m-2" (click)="back()">Back</button>
             <button type="submit" class="btn btn-primary col-md-4 m-2" [disabled]="registerForm.status!='VALID'">Submit</button>
-            <button class="btn btn-success col-md-3 m-2" (click)="router.navigate(['/login'])">Login</button>
+            <button class="btn btn-success col-md-3 m-2" (click)="router.navigate(['/login'])">Cancel</button>
+            <div class="alert alert-danger" *ngIf="registerErrorMessage">
+                {{registerErrorMessage}}
+            </div>
             </div>
           </div>
           </form>
@@ -184,6 +187,5 @@
     </div>
   </div>
   <!-- <pre>
-    {{password.errors|json}}
-
+    {{role.value|json}}
   </pre> -->

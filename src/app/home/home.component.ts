@@ -59,11 +59,11 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.status = false;
     this.name = JSON.parse(localStorage.getItem("currentUser")).name;
-    console.log(this.router.url.split('/')[1]);
+    //console.log(this.router.url.split('/')[1]);
     this.navLinks = this.navInfo.find(element => {
       return element.role === this.router.url.split('/')[1];
     });
-    console.log(this.navLinks);
+    //console.log(this.navLinks);
   }
   clickEvent(event) {
     this.status = ! this.status;

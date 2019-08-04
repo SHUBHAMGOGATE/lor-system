@@ -27,12 +27,12 @@ export class DocumentService {
       params:new HttpParams().set('email',this.authservice.currentUserValue.email)
     }).subscribe(
       x=>{
-        console.log(x);
+        //console.log(x);
         this.documentsListSubject.next(x);
         this.isPageLoaded.next(true);
       },
       err=>{
-        console.log(err);
+        //console.log(err);
       }
     )
   }
@@ -55,7 +55,7 @@ export class DocumentService {
           return { status: 'progress', message: progress };
 
         case HttpEventType.Response:
-          console.log(filename);
+          //console.log(filename);
           this.documentsListSubject.value.push({filename})
           this.documentsListSubject.next(this.documentsListSubject.value)
           return event.body;

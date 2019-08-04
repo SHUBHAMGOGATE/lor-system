@@ -15,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor{
     let newRequest:HttpRequest<any>=request.clone({
       headers:new HttpHeaders().set('Authorization',`Bearer ${this.authService.currentUserValue.token}`)
     })
-    console.log(newRequest)
+    //console.log(newRequest)
     return next.handle(newRequest);
     }
     return next.handle(request);

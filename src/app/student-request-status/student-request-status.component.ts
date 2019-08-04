@@ -41,7 +41,7 @@ export class StudentRequestStatusComponent implements OnInit {
     }
   ];
   public progress(req:Request){
-    console.log((req.level+1)*25);
+    //console.log((req.level+1)*25);
     return (req.level+1)*25 + '%';
     // switch (req.status) {
     //   case "Submitted":

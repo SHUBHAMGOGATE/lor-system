@@ -18,23 +18,23 @@ export class AnalyticsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log(params);
+      //console.log(params);
       if(params['professor']){
         this.type=3;
-        console.log(params['professor']);
+        //console.log(params['professor']);
         this.obs=this.analytics.analyseByProfessor(params['year'],params['branch'],params['professor'])
       }else if(params['branch']){
         this.type=2;
-        console.log(params['branch']);
+        //console.log(params['branch']);
         this.obs=this.analytics.analyseByDept(params['year'],params['branch'])
       }else if(params['year']){
         this.type=1;
-        console.log(params['year']);
+        //console.log(params['year']);
         this.obs=this.analytics.analyseByYear(params['year'])
 
       }else{
         this.type=0;
-        console.log('hello');
+        //console.log('hello');
         this.obs=this.analytics.getAcademicYears()
       }
     });

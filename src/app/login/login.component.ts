@@ -38,22 +38,22 @@ public get password()  {
   onSubmit() {
     const email: string = this.loginForm.get('email').value;
     const password: string = this.loginForm.get('password').value;
-    console.log(this.loginForm.value);
+    //console.log(this.loginForm.value);
     this.authservice.login(email, password).subscribe(
       user => {
-        console.log(user);
+        //console.log(user);
         const role: string = user['role'];
         this.router.navigate(['/' + role]);
       },
       error => {
-        console.log(error);
+        //console.log(error);
         this.errmsgs=error.error.message;
       }
     );
   }
 
   onChangePassword(){
-    console.log("Change Password Clicked")
+    //console.log("Change Password Clicked")
     this.router.navigate(['/changePassword'])
   }
 

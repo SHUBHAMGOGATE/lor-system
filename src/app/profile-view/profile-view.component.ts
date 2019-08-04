@@ -26,7 +26,7 @@ export class ProfileViewComponent implements OnInit {
     })
 
     this. user=this.userService.getUser().pipe(map(x=>{
-      console.log(x)
+      //console.log(x)
       this.user_form.patchValue({
         first_name:x['first_name'],
         last_name:x['last_name'],
@@ -37,12 +37,12 @@ export class ProfileViewComponent implements OnInit {
     }))
   }
   onSubmit(){
-    console.log(this.user_form.value);
+    //console.log(this.user_form.value);
     this.userService.updateUser(this.user_form.value).subscribe(
       x=>{
-        console.log(x)
+        //console.log(x)
         this. user=this.userService.getUser().pipe(map(x=>{
-          console.log(x)
+          //console.log(x)
           this.user_form.patchValue({
             first_name:x['first_name'],
             last_name:x['last_name'],

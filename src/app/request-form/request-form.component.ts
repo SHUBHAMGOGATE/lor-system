@@ -43,13 +43,13 @@ export class RequestFormComponent implements OnInit {
       x=>{
         this.filter_professors=x;
         this.all_professors=x;
-        console.log(this.all_professors)
+        //console.log(this.all_professors)
       }
     )
 
   }
   onSubmit(){
-    console.log(this.request_form.value);
+    //console.log(this.request_form.value);
     this.requestService.makeRequest(this.request_form.value).subscribe(
       x=>{
         this.router.navigate(['../status'],{relativeTo:this.route});
@@ -59,8 +59,8 @@ export class RequestFormComponent implements OnInit {
     );
   }
   filterProf(event){
-    console.log(event.target.value=='IT');
+    //console.log(event.target.value=='IT');
     this.filter_professors=this.all_professors.filter(element=>element.dept===event.target.value);
-    console.log(this.filter_professors)
+    //console.log(this.filter_professors)
   }
 }

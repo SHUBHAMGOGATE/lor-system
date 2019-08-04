@@ -30,7 +30,7 @@ export class ChangeEmailComponent implements OnInit {
   }
   sendEmail(){
     this.loading_email_response=true;
-    console.log(this.email_form.value.email);
+    //console.log(this.email_form.value.email);
     this.email=this.email_form.value.email;
     this.userService.verifyEmail(this.email_form.value.email).subscribe(
       x=>{
@@ -38,10 +38,10 @@ export class ChangeEmailComponent implements OnInit {
         this.loading_email_response=false;
         this.loading_email_error=null;
         // if(x["status"]===200){
-        //   console.log(x["message"])
+        //   //console.log(x["message"])
         //   this.step++;
         // }else{
-        //   console.log(x["message"]);
+        //   //console.log(x["message"]);
         // }
       },
       error=>{
@@ -52,20 +52,20 @@ export class ChangeEmailComponent implements OnInit {
   }
 
   verifyOtp(){
-    console.log(this.email_form.value.email+" "+ this.otp_form.value.otp);
+    //console.log(this.email_form.value.email+" "+ this.otp_form.value.otp);
     this.loading_otp_response=true;
     this.userService.editEmail(this.email,this.otp_form.value.otp).subscribe(
       x=>{
         this.loading_otp_response=false;
         this.loading_otp_error=null;
-        console.log(x)
+        //console.log(x)
         this.authService.updateEmail(this.email,x['token'])
         this.router.navigate(['/login'])
         // if(x["status"]===200){
-        //   console.log(x["message"])
+        //   //console.log(x["message"])
 
         // }else{
-        //   console.log(x["message"])
+        //   //console.log(x["message"])
         // }
       },
       error=>{

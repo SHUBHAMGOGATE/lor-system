@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   public step;
   public url;
   public otpErrorMessage;
+  public registerErrorMessage;
   ngOnInit() {
     this.route.url.subscribe(
       x=>{
@@ -45,7 +46,7 @@ export class RegisterComponent implements OnInit {
   sendMail(){
     this.userService.verifyEmail(this.registerForm.value.email).subscribe(
       x=>{
-        console.log(x);
+        //console.log(x);
         this.step++;
       }
     );
@@ -53,7 +54,7 @@ export class RegisterComponent implements OnInit {
   verifyOtp(){
     this.userService.verifyOtp(this.email.value,this.otp.value).subscribe(
       x=>{
-        console.log(x);
+        //console.log(x);
         this.step++;
         this.otpErrorMessage=null;
       },
@@ -96,18 +97,19 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.registerForm.value)
+    //console.log(this.registerForm.value)
     if(this.role.value!=0 || (this.role.value==0 && this.uid.value!=0)){
     let temp=this.registerForm.value;
     temp["key"]=this.otp.value
-    console.log(this.registerForm);
+    //console.log(this.registerForm);
     this.userService.registerUser(this.registerForm.value).subscribe(
       x => {
-        console.log(x);
+        //console.log(x);
         this.router.navigate(['/login']);
       },
       err => {
-        console.log(err);
+        this.registerErrorMessage=err.error.message;
+        //console.log(err);
       }
     );
     }

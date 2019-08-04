@@ -54,20 +54,20 @@ export class ChangePasswordComponent implements OnInit,OnDestroy {
     }
   }
   sendEmail(){
-    console.log(this.email_form.value.email);
+    //console.log(this.email_form.value.email);
     this.email_form_loader=true;
     this.authService.sendEmail(this.email_form.value.email).subscribe(
       x=>{
         this.step++;
-        console.log(this.email_form.value.email)
+        //console.log(this.email_form.value.email)
         //this.email_form.value.email=this.authService.currentUserValue.email;
         this.email_form_loader=false;
         this.email_form_error=null
         // if(x["status"]===200){
-        //   console.log(x["message"])
+        //   //console.log(x["message"])
         //   this.step++;
         // }else{
-        //   console.log(x["message"]);
+        //   //console.log(x["message"]);
         // }
       },
       error=>{
@@ -78,7 +78,7 @@ export class ChangePasswordComponent implements OnInit,OnDestroy {
   }
 
   verifyOtp(){
-    console.log(this.email_form.value.email+" "+ this.otp_form.value.otp);
+    //console.log(this.email_form.value.email+" "+ this.otp_form.value.otp);
     this.otp_form_loader=true;
     this.authService.verifyOtp(this.email_form.value.email,this.otp_form.value.otp).subscribe(
       x=>{
@@ -86,10 +86,10 @@ export class ChangePasswordComponent implements OnInit,OnDestroy {
         this.otp_form_loader=false;
         this.email_form_error=null;
         if(x["status"]===200){
-          console.log(x["message"])
+          //console.log(x["message"])
 
         }else{
-          console.log(x["message"])
+          //console.log(x["message"])
         }
       },
       error=>{
@@ -101,12 +101,12 @@ export class ChangePasswordComponent implements OnInit,OnDestroy {
 
   submit(){
     if(this.new_password_form.controls.new_password.value!=this.new_password_form.controls.retype_password.value){
-      console.log(this.new_password_form.value);
+      //console.log(this.new_password_form.value);
     }else{
       this.new_password_form_loader=true;
-      console.log(this.new_password_form.value)
+      //console.log(this.new_password_form.value)
       this.authService.changePassword(this.email_form.value.email,this.otp_form.value.otp,this.new_password_form.value.new_password).subscribe(x=>{
-        console.log(x);
+        //console.log(x);
         this.new_password_form_error=null;
         this.new_password_form_loader=false;
         this.router.navigate(['/login'])
