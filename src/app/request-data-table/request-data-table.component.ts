@@ -27,7 +27,7 @@ export class RequestDataTableComponent implements OnInit {
       this.completedRequestDataLoaded=false;
       this.pendingRequestDataLoaded=false;
       this.authService.currentUser.subscribe(x => {this.data$ = x.role; });
-    this.requestService.getPendingRequests().subscribe(x => {
+      this.requestService.getPendingRequests().subscribe(x => {
       this.pendingRequestDataLoaded=true;
       this.completedRequestDataLoaded=true;
       this.pendingReqList$ = x;

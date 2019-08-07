@@ -23,9 +23,9 @@ export class HomeComponent implements OnInit {
     {
       role: 'hod',
       links: [
-        {tag: 'Lor requests', link: './request'},
+        {tag: 'Lor Requests', link: './request'},
         {tag: 'View Profile', link: './profile'},
-        {tag: 'Analytics', link: './analytics'},
+        {tag: 'Analysis', link: './analytics'},
         // {tag: 'Upload/Download LOR Format', link:'./documents'}
       ]
     },
